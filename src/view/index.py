@@ -25,9 +25,9 @@ def pagina_inicial():
     if opcao == "Manutenção":
         st.title("Manutenção")
         st.write("Aqui você pode gerenciar a manutenção dos veículos.")
-    if opcao == "Dashboard":
-        st.title("Dashboard")
-        st.write("Aqui você pode visualizar o dashboard.")
+    if opcao == "Relatório":
+        st.title("Relatório")
+        st.write("Aqui você pode visualizar o Relatório.")
   
 
 
