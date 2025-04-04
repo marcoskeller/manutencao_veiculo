@@ -12,7 +12,7 @@ from src.view.pagina_pneu_view import pneu_view
 def inicio():
     try:
         # Configuração do logger
-        logging.basicConfig(level=logging.INFO, filename="./logs/pagina_principal.log", format="%(asctime)s - %(levelname)s - %(message)s")
+        logging.basicConfig(level=logging.INFO, filename="./logs/veiculo.log", format="%(asctime)s - %(levelname)s - %(message)s")
         
         # Configuração do Streamlit
         st.set_page_config(layout='wide',initial_sidebar_state='collapsed',)
@@ -40,8 +40,8 @@ def inicio():
             relatorio_basico_view()
     
     except Exception as e:
-        logging.error(f"Erro ao carregar a Pagina Principal: {e}")
-        print("Erro: Erro ao carregar a Pagina Principal!")
+        logging.error(f"Erro ao carregar a Pagina de Veiculos: {e}")
+        print("Erro: Erro ao carregar a Pagina de Veiculos!")
 
 
 

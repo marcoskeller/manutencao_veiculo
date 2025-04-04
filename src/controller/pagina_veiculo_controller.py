@@ -1,7 +1,5 @@
-import streamlit as st
-import logging
-from src.model.pagina_veiculo_model import exibicao_dataframe
+from src.model.pagina_veiculo_model import veiculo_model
 
 
 def veiculo_basico_controller():
-    exibicao_dataframe()
+    veiculo_model()

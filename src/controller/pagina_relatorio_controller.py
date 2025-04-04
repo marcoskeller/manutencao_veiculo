@@ -1,8 +1,6 @@
-import streamlit as st
-import logging
-from src.model.pagina_relatorio_model import exibicao_dataframe
+from src.model.pagina_relatorio_model import relatorio_model
 
 
 
 def relatorio_basico_controller():
-    exibicao_dataframe()
+    relatorio_model()

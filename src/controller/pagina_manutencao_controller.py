@@ -1,5 +1,3 @@
-import streamlit as st
-import logging
 from src.model.pagina_manutencao_model import manutencao_model
 
 
