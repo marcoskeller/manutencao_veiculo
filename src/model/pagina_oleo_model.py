@@ -1,4 +1,5 @@
 import streamlit as st
+import logging
 
 def oleo_model():
     st.title("óleo")

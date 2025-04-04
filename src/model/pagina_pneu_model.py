@@ -1,4 +1,5 @@
 import streamlit as st
+import logging
 
 def pneu_model():
     st.title("Pneus")

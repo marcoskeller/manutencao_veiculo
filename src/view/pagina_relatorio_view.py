@@ -1,4 +1,5 @@
 import streamlit as st
+import logging
 from src.controller.pagina_relatorio_controller import relatorio_basico_controller
 
 

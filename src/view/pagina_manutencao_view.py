@@ -1,4 +1,5 @@
 import streamlit as st
+import logging
 from src.controller.pagina_manutencao_controller import manutencao_controller
 
 
