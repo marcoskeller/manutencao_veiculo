@@ -8,9 +8,8 @@ def leitura_arquivo_excel():
     try:
         # Configuração do logger
         logging.basicConfig(level=logging.INFO, filename="./logs/oleo.log", format="%(asctime)s - %(levelname)s - %(message)s")
-        df = pd.read_excel('./dados/Controle_Manutencao_Honda_City.xlsm', sheet_name = '5. MANUTENÇÕES', skiprows = 6, usecols = range(0,9))
-        #df = pd.read_excel('./dados/src/Controle_Manutencao_Honda_City.xlsm', sheet_name = '5. MANUTENÇÕES', skiprows = 6, usecols = range(0,9))
-        logging.info("Arquivo lido com sucesso.")
+        df = pd.read_excel('./dados/Controle_Manutencao_Honda_City.xlsm', sheet_name = '6. TROCAS DE ÓLEO', skiprows = 6, usecols = range(0,13))
+        logging.info("Arquivo da Pagina Oleo lido com sucesso.")
         return df  
 
     except FileNotFoundError as error:

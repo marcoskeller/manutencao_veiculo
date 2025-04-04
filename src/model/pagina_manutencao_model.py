@@ -10,7 +10,7 @@ def leitura_arquivo_excel():
         logging.basicConfig(level=logging.INFO, filename="./logs/manutencao.log", format="%(asctime)s - %(levelname)s - %(message)s")
         df = pd.read_excel('./dados/Controle_Manutencao_Honda_City.xlsm', sheet_name = '5. MANUTENÇÕES', skiprows = 6, usecols = range(0,9))
         #df = pd.read_excel('./dados/src/Controle_Manutencao_Honda_City.xlsm', sheet_name = '5. MANUTENÇÕES', skiprows = 6, usecols = range(0,9))
-        logging.info("Arquivo lido com sucesso.")
+        logging.info("Arquivo da Pagina Manutencao lido com sucesso.")
         return df  
 
     except FileNotFoundError as error:
