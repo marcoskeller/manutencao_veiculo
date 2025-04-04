@@ -1,7 +1,9 @@
 import streamlit as st
+from src.controller.pagina_oleo_controller import oleo_controller
 
 
-def pagina_inicial():
-    #Teste
-    st.title("Página Inicial")
-    st.write("Bem-vindo à página inicial!")
+
+def oleo_view():
+    oleo_controller()
+
+

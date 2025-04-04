@@ -1,7 +1,8 @@
 import streamlit as st
+from src.controller.pagina_pneu_controller import pneu_controller
 
 
-def pagina_inicial():
-    #Teste
-    st.title("Página Inicial")
-    st.write("Bem-vindo à página inicial!")
+
+def pneu_view():
+    pneu_controller()
+

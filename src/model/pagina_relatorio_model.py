@@ -12,8 +12,13 @@ def leitura_arquivo_excel():
     return df
 
 
+# def exibicao_dataframe():
+#     # Lê o arquivo CSV e armazena em um DataFrame
+#     df = leitura_arquivo_excel()
+#     # Exibe o DataFrame no Streamlit
+#     st.dataframe(df)
+
 def exibicao_dataframe():
-    # Lê o arquivo CSV e armazena em um DataFrame
-    df = leitura_arquivo_excel()
-    # Exibe o DataFrame no Streamlit
-    st.dataframe(df)
+    st.title("Relatórios")
+    st.write("Aqui você pode gerenciar o veiculos através de diversos relatórios.")
+    # Aqui você pode adicionar o código para gerenciar a manutenção dos veículos, como adicionar, editar ou excluir registros de manutenção.
