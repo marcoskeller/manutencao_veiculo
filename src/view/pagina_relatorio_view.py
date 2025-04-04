@@ -1,8 +1,7 @@
 import streamlit as st
+from src.controller.pagina_veiculo_controller import veiculo_basico_controller
 
 
 
-def relatorio_basico_view():
-    st.title("Relatório")
-    st.write("Aqui você pode visualizar o Relatório.")
-    st.write("Relatório de Veículos da Pagina View")
+def veiculo_basico_view():
+    veiculo_basico_controller()

@@ -1,6 +1,7 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
-from src.controller.pagina_relatorio_controller import relatorio_basico_controller
+from src.view.pagina_relatorio_view import veiculo_basico_view
+from src.view.pagina_veiculo_view import veiculo_basico_view
 
 
 
@@ -14,7 +15,7 @@ def inicio():
         selected
 
         
-    opcao = option_menu(None, ["Inicio", "Veiculo", "Manutenção", 'Relatório'],
+    opcao = option_menu(None, ["Veiculo", "Manutenção","Óleo", "Pneu",'Relatório'],
                             icons=['house', 'cloud-upload', "list-task", 'gear'],
                             key='menu_5', orientation="horizontal")
     opcao
@@ -23,13 +24,12 @@ def inicio():
         st.title("Página Inicial")
         st.write("Bem-vindo à página inicial!")
     if opcao == "Veiculo":
-        st.title("Veículo")
-        st.write("Aqui você pode gerenciar os veículos.")
+        veiculo_basico_view()
     if opcao == "Manutenção":
         st.title("Manutenção")
         st.write("Aqui você pode gerenciar a manutenção dos veículos.")
     if opcao == "Relatório":
-        relatorio_basico_controller()
+        veiculo_basico_view()
 
   
 
