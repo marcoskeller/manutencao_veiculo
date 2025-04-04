@@ -1,17 +1,20 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
+from src.controller.pagina_relatorio_controller import relatorio_basico_controller
 
-def pagina_inicial():
-    #make it look nice from the start
+
+
+def inicio():
+   
     st.set_page_config(layout='wide',initial_sidebar_state='collapsed',)
-    # 1. as sidebar menu
+
     with st.sidebar:
-        selected = option_menu("Menu", ["Veículos", 'Manutenção', 'Dashboard'], 
+        selected = option_menu("Menu", ["Veículos", 'Manutenção', 'Relatório'], 
             icons=['house', 'gear','cloud-upload'], menu_icon="cast", default_index=1)
         selected
 
         
-    opcao = option_menu(None, ["Inicio", "Veiculo", "Manutenção", 'Dashboard'],
+    opcao = option_menu(None, ["Inicio", "Veiculo", "Manutenção", 'Relatório'],
                             icons=['house', 'cloud-upload', "list-task", 'gear'],
                             key='menu_5', orientation="horizontal")
     opcao
@@ -26,8 +29,8 @@ def pagina_inicial():
         st.title("Manutenção")
         st.write("Aqui você pode gerenciar a manutenção dos veículos.")
     if opcao == "Relatório":
-        st.title("Relatório")
-        st.write("Aqui você pode visualizar o Relatório.")
+        relatorio_basico_controller()
+
   
 
 
