@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import logging
 
+
 #Funcao para Formatar Valores Monetarios
 def formatar_moeda_pais(valor):
     valor_formatado = "R${:,.2f}".format(valor)
@@ -48,7 +49,31 @@ def abastecimento_model():
 
     #Formatação da coluna 'Data' para o formato datetime
     df['Data'] = pd.to_datetime(df['Data'])
-    df['Data'] = df['Data'].dt.strftime('%d/%m/%Y')
+    
+    #Ordena as Datas
+    df = df.sort_values("Data")
+
+    # Criar uma nova coluna "Mes" e "Ano" que contém o ano e o mês dos abastecimentos
+    df["Ano"] = pd.to_datetime(df["Data"]).dt.year
+    df["Mes"] = pd.to_datetime(df["Data"]).dt.month_name(locale='pt_BR')
+
+    
+    # Criar uma seleção para a escolha do ano do abastecimento
+    ano_abastecimento = df["Ano"].unique()
+    st.selectbox("Selecione o Ano", ano_abastecimento)
+    
+    # Criar uma seleção de meses na barra lateral do dashboard
+    mes_abastecimento = st.selectbox("Selecione o Mês do Abastecimento", df["Mes"].unique())
+
+    # Filtrar os dados com base no mês selecionado
+    df_filtrado = df[df["Mes"] == mes_abastecimento]
+
+    #Formata as Datas para o formato dd/mm/yyyy
+    df_filtrado['Data'] = df_filtrado['Data'].dt.strftime('%d/%m/%Y')
+    
+    
+    #Trabalhando a Exibição dos dados
+    df_colunas_especificas = df_filtrado[['Data','Placa','Modelo','Tipo de Combustivel','Custo total R$' ,'Preço por litro','Litros abastecidos','Quilometragem do hodômetro (Km)','Km percorridos']]
     
     # Exibe o DataFrame no Streamlit
-    st.dataframe(df)
+    st.dataframe(df_colunas_especificas, use_container_width=True, hide_index=True)
