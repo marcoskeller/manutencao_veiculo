@@ -6,6 +6,7 @@ from src.view.pagina_veiculo_view import veiculo_basico_view
 from src.view.pagina_manutencao_view import manutencao_view
 from src.view.pagina_oleo_view import oleo_view
 from src.view.pagina_pneu_view import pneu_view
+from src.view.pagina_abastecimento_view import veiculo_abastecimento_view
 
 
 
@@ -23,13 +24,15 @@ def inicio():
             selected
 
             
-        opcao = option_menu(None, ["Veiculo", "Manutenção","Óleo", "Pneu",'Relatório'],
+        opcao = option_menu(None, ["Veiculo", "Manutenção", "Abastecimento" ,"Óleo", "Pneu",'Relatório'],
                                 icons=['house', 'cloud-upload', "list-task", 'gear'],
                                 key='menu_5', orientation="horizontal")
         opcao
 
         if opcao == "Veiculo":
-            veiculo_basico_view()    
+            veiculo_basico_view()
+        if opcao == "Abastecimento":
+            veiculo_abastecimento_view()     
         if opcao == "Manutenção":
             manutencao_view()
         if opcao == "Óleo":
