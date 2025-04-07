@@ -22,8 +22,8 @@ def leitura_arquivo_excel():
     except Exception as error:
         logging.error(f"Erro inesperado: {error}")
         print("Erro: Erro inesperado ao ler o arquivo.")
-
-
+        
+        
 def filtro_exibicao_dataframe_model():
     # Lê o arquivo Excel e armazena em um DataFrame
     df = leitura_arquivo_excel()
@@ -52,6 +52,11 @@ def filtro_exibicao_por_data_model():
     # Lê o arquivo Excel e armazena em um DataFrame
     df = leitura_arquivo_excel()
 
+    #Transforma a coluna 'Data' para o formato datetime
+    df['Data'] = pd.to_datetime(df['Data'])
+    df['Data'] = df['Data'].dt.strftime('%d/%m/%Y')
+
+ 
     #Filtro Data
     # Cria um filtro para a coluna 'Data'
     data_selecionada = st.selectbox('Selecione uma Data', df['Data'].unique())
