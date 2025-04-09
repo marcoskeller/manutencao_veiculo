@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
+#import numpy as np
 import logging
 
 
@@ -10,6 +10,7 @@ def formatar_moeda_pais(valor):
     valor_formatado = valor_formatado.replace(',', 'temp').replace('.', ',').replace('temp', '.')
     return valor_formatado
 
+
 #Funcao para Formatar Valores Numericos
 def formatar_valores_numericos(valor):
     valor_formatado = "{:,.2f}".format(valor)
@@ -17,7 +18,6 @@ def formatar_valores_numericos(valor):
     return valor_formatado
 
  
-
 #Leitura do arquivo Excel
 def leitura_arquivo_excel():
     try:
@@ -41,7 +41,6 @@ def leitura_arquivo_excel():
         print("Erro: Erro inesperado ao ler o arquivo.")
 
 
-
 # Função para exibir a página de manutenção
 def abastecimento_model():
     # Lê o arquivo Excel e armazena em um DataFrame
@@ -63,7 +62,7 @@ def abastecimento_model():
     st.selectbox("Selecione o Ano", ano_abastecimento)
     
     # Criar uma seleção de meses na barra lateral do dashboard
-    mes_abastecimento = st.selectbox("Selecione o Mês do Abastecimento", df["Mes"].unique())
+    mes_abastecimento = st.selectbox("Selecione o Mês do Abastecimento", df["Mes"].unique(), None, placeholder="Nenhum Mês Selecionado")
 
     # Filtrar os dados com base no mês selecionado
     df_filtrado = df[df["Mes"] == mes_abastecimento]
@@ -75,5 +74,34 @@ def abastecimento_model():
     #Trabalhando a Exibição dos dados
     df_colunas_especificas = df_filtrado[['Data','Placa','Modelo','Tipo de Combustivel','Custo total R$' ,'Preço por litro','Litros abastecidos','Quilometragem do hodômetro (Km)','Km percorridos']]
     
+
     # Exibe o DataFrame no Streamlit
-    st.dataframe(df_colunas_especificas, use_container_width=True, hide_index=True)
+    if mes_abastecimento is not None:
+        st.dataframe(df_colunas_especificas, use_container_width=True, hide_index=True)
+    else:
+        print("")
+    
+    exibi_dataframe_geral_abastecimento()
+        
+# Função para exibir o DataFrame geral de abastecimento sem filtros
+def exibi_dataframe_geral_abastecimento():
+    # Lê o arquivo Excel e armazena em um DataFrame
+    df = leitura_arquivo_excel()
+
+    #Formatação da coluna 'Data' para o formato datetime
+    df['Data'] = pd.to_datetime(df['Data'])
+    
+    #Ordena as Datas
+    df = df.sort_values("Data")
+
+    #Formata as Datas para o formato dd/mm/yyyy
+    df['Data'] = df['Data'].dt.strftime('%d/%m/%Y')
+
+    #Trabalhando a Exibição dos dados
+    df_colunas_especificas = df[['Data','Placa','Modelo','Tipo de Combustivel','Custo total R$' ,'Preço por litro','Litros abastecidos','Quilometragem do hodômetro (Km)','Km percorridos']]
+    
+
+    # Exibicao de Todos os dados filtrados
+    on = st.toggle("Exibir todos os dados sem filtro!", False, key="exibir_todos_dados")
+    if on:
+        st.dataframe(df_colunas_especificas, use_container_width=True, hide_index=True)
