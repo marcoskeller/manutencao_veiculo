@@ -25,8 +25,7 @@ def inicio():
 
             
         opcao = option_menu(None, ["Veiculo", "Manutenção", "Abastecimento" ,"Óleo", "Pneu",'Relatório'],
-                                icons=['house', 'cloud-upload', "list-task", 'gear'],
-                                key='menu_5', orientation="horizontal")
+                                icons=['house', 'cloud-upload', "list-task", 'gear'], key='menu_5', orientation="horizontal")
         opcao
 
         if opcao == "Veiculo":

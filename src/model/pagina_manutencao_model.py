@@ -165,9 +165,3 @@ def manutencao_model():
     filtro_exibicao_dataframe_model()
     filtros_model()
     #filtro_exibicao_por_data_model()
-
-
-
-
-
-
