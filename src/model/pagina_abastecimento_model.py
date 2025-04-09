@@ -1,7 +1,8 @@
 import streamlit as st
 import pandas as pd
-#import numpy as np
+import numpy as np
 import logging
+
 
 
 #Funcao para Formatar Valores Monetarios
@@ -67,13 +68,16 @@ def abastecimento_model():
     # Filtrar os dados com base no mês selecionado
     df_filtrado = df[df["Mes"] == mes_abastecimento]
 
-    #Formata as Datas para o formato dd/mm/yyyy
-    df_filtrado['Data'] = df_filtrado['Data'].dt.strftime('%d/%m/%Y')
+    
     
     
     #Trabalhando a Exibição dos dados
     df_colunas_especificas = df_filtrado[['Data','Placa','Modelo','Tipo de Combustivel','Custo total R$' ,'Preço por litro','Litros abastecidos','Quilometragem do hodômetro (Km)','Km percorridos']]
     
+    #Formata as Datas para o formato dd/mm/yyyy
+    #df_filtrado['Data'] = df_filtrado['Data'].dt.strftime('%d/%m/%Y')
+   
+
 
     # Exibe o DataFrame no Streamlit
     if mes_abastecimento is not None:
