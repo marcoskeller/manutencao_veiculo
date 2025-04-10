@@ -71,12 +71,15 @@ def abastecimento_model():
     # Lê o arquivo Excel e armazena em um DataFrame
     df = leitura_arquivo_excel()
 
-    #Formatação da coluna 'Data' para o formato datetime
-    df['Data'] = pd.to_datetime(df['Data'])
     
-    #Ordena as Datas
-    df = df.sort_values("Data")
+    #Formatação da coluna 'Data' para o formato datetime
+    df['Data'] = pd.to_datetime(df['Data'], format = '%d/%m/%Y')
+    
 
+    #Formata as Datas para o formato dd/mm/yyyy
+    df['Data'] = df['Data'].dt.strftime('%d/%m/%Y')
+
+    
     # Criar uma nova coluna "Mes" e "Ano" que contém o ano e o mês dos abastecimentos
     df["Ano"] = pd.to_datetime(df["Data"]).dt.year
     df["Mes"] = pd.to_datetime(df["Data"]).dt.month_name(locale='pt_BR')
@@ -87,7 +90,7 @@ def abastecimento_model():
     st.selectbox("Selecione o Ano", ano_abastecimento)
     
     # Criar uma seleção de meses na barra lateral do dashboard
-    mes_abastecimento = st.selectbox("Selecione o Mês do Abastecimento", df["Mes"].unique(), None, placeholder="Nenhum Mês Selecionado")
+    mes_abastecimento = st.selectbox("Selecione o Mês do Abastecimento", df["Mes"].unique(),None, placeholder="Nenhum Mês Selecionado")
 
     # Filtrar os dados com base no mês selecionado
     df_filtrado = df[df["Mes"] == mes_abastecimento]
@@ -96,17 +99,13 @@ def abastecimento_model():
     #Trabalhando a Exibição dos dados
     df_colunas_especificas = df_filtrado[['Data','Placa','Modelo','Tipo de Combustivel','Custo total R$' ,'Preço por litro','Litros abastecidos','Quilometragem do hodômetro (Km)','Km percorridos']]
     
-    #Formata as Datas para o formato dd/mm/yyyy
-    #df_filtrado['Data'] = df_filtrado['Data'].dt.strftime('%d/%m/%Y')
-   
-    #Formata as Datas para o formato dd/mm/yyyy
-    df_colunas_especificas['Data'] = df_colunas_especificas['Data'].dt.strftime('%d/%m/%Y')
-
+    
     # Exibe o DataFrame no Streamlit
     if mes_abastecimento is not None:
+        #df_colunas_especificas['Data'].dt.strftime('%d/%m/%Y')
         st.dataframe(df_colunas_especificas, use_container_width=True, hide_index=True)
 
     
-    #exibi_dataframe_geral_abastecimento()
+    exibi_dataframe_geral_abastecimento()
         
 
