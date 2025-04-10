@@ -54,16 +54,16 @@ def exibi_dataframe_geral_abastecimento():
     df = df.sort_values("Data")
 
     #Formata as Datas para o formato dd/mm/yyyy
-    df['Data'] = df['Data'].dt.strftime('%d/%m/%Y')
+    #df['Data'] = df['Data'].dt.strftime('%d/%m/%Y')
 
     #Trabalhando a Exibição dos dados
     df_colunas_especificas = df[['Data','Placa','Modelo','Tipo de Combustivel','Custo total R$' ,'Preço por litro','Litros abastecidos','Quilometragem do hodômetro (Km)','Km percorridos']]
     
-
+    st.dataframe(df_colunas_especificas, use_container_width=True, hide_index=True)
     # Exibicao de Todos os dados filtrados
-    on = st.toggle("Exibir todos os dados sem filtro!", False, key="exibir_todos_dados_abastecimento")
-    if on:
-        st.dataframe(df_colunas_especificas, use_container_width=True, hide_index=True)
+    # on = st.toggle("Exibir todos os dados sem filtro!", False, key="exibir_todos_dados_abastecimento")
+    # if on:
+    #     st.dataframe(df_colunas_especificas, use_container_width=True, hide_index=True)
 
 
 # Função para exibir a página de manutenção
@@ -82,7 +82,7 @@ def abastecimento_model():
     
     # Criar uma nova coluna "Mes" e "Ano" que contém o ano e o mês dos abastecimentos
     df["Ano"] = pd.to_datetime(df["Data"]).dt.year
-    df["Mes"] = pd.to_datetime(df["Data"]).dt.month_name(locale='pt_BR')
+    df["Mes"] = pd.to_datetime(df["Data"]).dt.month_name()
 
     
     # Criar uma seleção para a escolha do ano do abastecimento
