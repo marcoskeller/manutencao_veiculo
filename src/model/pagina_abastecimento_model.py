@@ -76,15 +76,14 @@ def abastecimento_model():
     #df['Data'] = pd.to_datetime(df['Data'], format = '%d/%m/%Y')
     df['Data'] = pd.to_datetime(df['Data'])
 
-    #Formata as Datas para o formato dd/mm/yyyy
-    #df['Data'] = df['Data'].dt.strftime('%d/%m/%Y')
-
     
     # Criar uma nova coluna "Mes" e "Ano" que contém o ano e o mês dos abastecimentos
     df["Ano"] = pd.to_datetime(df["Data"]).dt.year
     df["Mes"] = pd.to_datetime(df["Data"]).dt.month_name()
 
-    
+    #Formata as Datas para o formato dd/mm/yyyy
+    df['Data'] = df['Data'].dt.strftime('%d/%m/%Y')
+
     # Criar uma seleção para a escolha do ano do abastecimento
     ano_abastecimento = df["Ano"].unique()
     st.selectbox("Selecione o Ano", ano_abastecimento)
