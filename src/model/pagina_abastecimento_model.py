@@ -73,11 +73,11 @@ def abastecimento_model():
 
     
     #Formatação da coluna 'Data' para o formato datetime
-    df['Data'] = pd.to_datetime(df['Data'], format = '%d/%m/%Y')
-    
+    #df['Data'] = pd.to_datetime(df['Data'], format = '%d/%m/%Y')
+    df['Data'] = pd.to_datetime(df['Data'])
 
     #Formata as Datas para o formato dd/mm/yyyy
-    df['Data'] = df['Data'].dt.strftime('%d/%m/%Y')
+    #df['Data'] = df['Data'].dt.strftime('%d/%m/%Y')
 
     
     # Criar uma nova coluna "Mes" e "Ano" que contém o ano e o mês dos abastecimentos
