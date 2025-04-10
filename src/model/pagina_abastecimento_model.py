@@ -107,6 +107,6 @@ def abastecimento_model():
         st.dataframe(df_colunas_especificas, use_container_width=True, hide_index=True)
 
     
-    exibi_dataframe_geral_abastecimento()
+    #exibi_dataframe_geral_abastecimento()
         
 
