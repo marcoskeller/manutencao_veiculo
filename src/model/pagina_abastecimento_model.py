@@ -42,6 +42,30 @@ def leitura_arquivo_excel():
         print("Erro: Erro inesperado ao ler o arquivo.")
 
 
+# Função para exibir o DataFrame geral de abastecimento sem filtros
+def exibi_dataframe_geral_abastecimento():
+    # Lê o arquivo Excel e armazena em um DataFrame
+    df = leitura_arquivo_excel()
+
+    #Formatação da coluna 'Data' para o formato datetime
+    df['Data'] = pd.to_datetime(df['Data'])
+    
+    #Ordena as Datas
+    df = df.sort_values("Data")
+
+    #Formata as Datas para o formato dd/mm/yyyy
+    df['Data'] = df['Data'].dt.strftime('%d/%m/%Y')
+
+    #Trabalhando a Exibição dos dados
+    df_colunas_especificas = df[['Data','Placa','Modelo','Tipo de Combustivel','Custo total R$' ,'Preço por litro','Litros abastecidos','Quilometragem do hodômetro (Km)','Km percorridos']]
+    
+
+    # Exibicao de Todos os dados filtrados
+    on = st.toggle("Exibir todos os dados sem filtro!", False, key="exibir_todos_dados_abastecimento")
+    if on:
+        st.dataframe(df_colunas_especificas, use_container_width=True, hide_index=True)
+
+
 # Função para exibir a página de manutenção
 def abastecimento_model():
     # Lê o arquivo Excel e armazena em um DataFrame
@@ -75,7 +99,8 @@ def abastecimento_model():
     #Formata as Datas para o formato dd/mm/yyyy
     #df_filtrado['Data'] = df_filtrado['Data'].dt.strftime('%d/%m/%Y')
    
-
+    #Formata as Datas para o formato dd/mm/yyyy
+    df_colunas_especificas['Data'] = df_colunas_especificas['Data'].dt.strftime('%d/%m/%Y')
 
     # Exibe o DataFrame no Streamlit
     if mes_abastecimento is not None:
@@ -84,25 +109,4 @@ def abastecimento_model():
     
     exibi_dataframe_geral_abastecimento()
         
-# Função para exibir o DataFrame geral de abastecimento sem filtros
-def exibi_dataframe_geral_abastecimento():
-    # Lê o arquivo Excel e armazena em um DataFrame
-    df = leitura_arquivo_excel()
 
-    #Formatação da coluna 'Data' para o formato datetime
-    df['Data'] = pd.to_datetime(df['Data'])
-    
-    #Ordena as Datas
-    df = df.sort_values("Data")
-
-    #Formata as Datas para o formato dd/mm/yyyy
-    df['Data'] = df['Data'].dt.strftime('%d/%m/%Y')
-
-    #Trabalhando a Exibição dos dados
-    df_colunas_especificas = df[['Data','Placa','Modelo','Tipo de Combustivel','Custo total R$' ,'Preço por litro','Litros abastecidos','Quilometragem do hodômetro (Km)','Km percorridos']]
-    
-
-    # Exibicao de Todos os dados filtrados
-    on = st.toggle("Exibir todos os dados sem filtro!", False, key="exibir_todos_dados_abastecimento")
-    if on:
-        st.dataframe(df_colunas_especificas, use_container_width=True, hide_index=True)
