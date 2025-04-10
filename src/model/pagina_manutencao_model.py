@@ -27,10 +27,12 @@ def leitura_arquivo_excel():
 def filtro_exibicao_dataframe_model():
     # Lê o arquivo Excel e armazena em um DataFrame
     df = leitura_arquivo_excel()
+    
     # Cria um filtro para o exibicao dos dados
     opcaoes_tabela = ['Exibir apenas as primeiras linhas', 'Exibir apenas as últimas linhas', 'Exibir amostra aleatória','Exibir todos os dados']
-    #exibir_tabela = st.checkbox('Exibir Todos os dados')
-    exibir_tabela = st.segmented_control(st.write("Exibir Dados"), opcaoes_tabela, selection_mode="multi")
+    
+    # Cria uma exibicao dos dados
+    exibir_tabela = st.segmented_control("Exibir Dados", opcaoes_tabela, selection_mode="multi")
 
     if 'Exibir todos os dados' in exibir_tabela:
         # Exibe apenas as primeiras linhas do DataFrame
@@ -44,8 +46,6 @@ def filtro_exibicao_dataframe_model():
     if 'Exibir amostra aleatória' in exibir_tabela:
         # Exibe uma amostra aleatória de 10 linhas do DataFrame
         st.dataframe(df.sample(5))
-        #d = df.sample(10)
-        #st.dataframe(d)
 
 
 def filtro_exibicao_por_data_model():
@@ -127,7 +127,7 @@ def filtro_exibicao_por_custo_total_model():
 def filtros_model():
     # Mostra as Colunas disponíveis para filtro
     colunas_interesse = ['Data', 'Placa', 'Modelo	Fabricante', 'Estabelecimento',	'Tipo de serviço',	'Descrição do serviço',	'Qualificacao do Serviço',	 'Custo total R$']
-    coluna_desejada = st.selectbox('Selecione Abaixo a Categoria Desejada', colunas_interesse, None)
+    coluna_desejada = st.selectbox('Selecione Abaixo a Categoria Desejada', colunas_interesse, None, placeholder="Nenhuma Categoria Selecionada")
 
     if coluna_desejada == 'Data':
         #Chama a função de filtro por Data
@@ -153,9 +153,6 @@ def filtros_model():
     elif coluna_desejada == 'Custo total R$':
         #Chama a função de filtro por Custo Total
         filtro_exibicao_por_custo_total_model()
-    else:
-        st.write("Nenhum filtro selecionado.")
-
     
 
    
@@ -164,4 +161,3 @@ def filtros_model():
 def manutencao_model():
     filtro_exibicao_dataframe_model()
     filtros_model()
-    #filtro_exibicao_por_data_model()
